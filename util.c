@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:13:19 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/24 15:49:41 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:52:09 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ int	check_filename(char *name)
 	int	len;
 
 	len = ft_strlen(name);
+	if (ft_strncmp(name, ".ber", 4) == 0 && ft_strncmp(name, ".", 1) == 0)
+	{
+		printf("Error\nPlease enter .ber map\n");
+		return (0);
+	}
 	if (name[len - 1] == 'r'
 		&& name[len -2] == 'e'
 		&& name[len -3] == 'b'

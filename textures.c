@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 13:00:34 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/24 14:25:13 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:57:01 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,14 @@ void	print_screen(t_data *data)
 		mlx_delete_image(data->mlx, data->str_steps);
 	data->str_steps = mlx_put_string(data->mlx, data->steps_str, 12, 5);
 	free(data->steps_str);
+}
+
+void	player_render(void *param)
+{
+	t_data	*data;
+
+	data = param;
+	mlx_delete_image(data->mlx, data->pimg);
+	data->pimg = mlx_texture_to_image(data->mlx, data->player);
+	mlx_image_to_window(data->mlx, data->pimg, data->j * 60, data->i * 84);
 }

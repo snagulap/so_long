@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:38:38 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/24 03:45:40 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:03:15 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_map(t_data *data, int i, int j)
 	{
 		if (data->map[i][j] != '1')
 		{
-			ft_printf("check map top borders");
+			ft_printf("check map top borders\n");
 			return (0);
 		}
 		j++;
@@ -31,7 +31,7 @@ int	check_map(t_data *data, int i, int j)
 	{
 		if (data->map[i][j] != '1')
 		{
-			ft_printf("check map bottom borders");
+			ft_printf("check map bottom borders\n");
 			return (0);
 		}
 		j++;
@@ -44,10 +44,7 @@ int	check_map1(t_data *data, int i, int j)
 	while (data->map[i])
 	{
 		if (data->map[i][0] != '1')
-		{
-			ft_printf("check map first line borders");
 			return (0);
-		}
 		i++;
 	}
 	while (data->map[0][j])
@@ -57,10 +54,7 @@ int	check_map1(t_data *data, int i, int j)
 	while (data->map[i])
 	{
 		if (data->map[i][j] != '1')
-		{
-			ft_printf("check map last line borders");
 			return (0);
-		}
 		i++;
 	}
 	return (1);

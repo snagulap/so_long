@@ -6,31 +6,27 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:06:05 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/24 15:51:25 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:55:09 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ft_hook(void *param)
+void	ft_hook(mlx_key_data_t key_data, void *param)
 {
 	t_data	*data;
 
-	data = param;
-	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
+	data = (t_data *)param;
+	if (key_data.key == MLX_KEY_ESCAPE && key_data.action == MLX_PRESS)
 		mlx_close_window(data->mlx);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_W)
-		|| mlx_is_key_down(data->mlx, MLX_KEY_UP))
-		key_pressed_w(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_S)
-		|| mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
-		key_pressed_s(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_A)
-		|| mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		key_pressed_a(data);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_D)
-		|| mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+	else if (key_data.key == MLX_KEY_D && key_data.action == MLX_PRESS)
 		key_pressed_d(data);
+	else if (key_data.key == MLX_KEY_W && key_data.action == MLX_PRESS)
+		key_pressed_w(data);
+	else if (key_data.key == MLX_KEY_S && key_data.action == MLX_PRESS)
+		key_pressed_s(data);
+	else if (key_data.key == MLX_KEY_A && key_data.action == MLX_PRESS)
+		key_pressed_a(data);
 }
 
 int	check(t_data *data)
@@ -67,7 +63,8 @@ int	start(char *data)
 	}
 	d->mlx = mlx_init((d->width -1) * 60, (d->height) * 84, "game", false);
 	map_construct(d);
-	mlx_loop_hook(d->mlx, &ft_hook, d);
+	mlx_key_hook(d->mlx, &ft_hook, d);
+	mlx_loop_hook(d->mlx, &player_render, d);
 	print_screen(d);
 	mlx_loop(d->mlx);
 	free_img(d);

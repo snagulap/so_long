@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 20:32:59 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/24 14:25:39 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:00:09 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ void	key_pressed_w(t_data *data)
 			mlx_close_window(data->mlx);
 			return ;
 		}
-		mlx_delete_image(data->mlx, data->pimg);
-		data->pimg = mlx_texture_to_image(data->mlx, data->player);
-		mlx_image_to_window(data->mlx, data->pimg, (data->j) * 60, \
-		(data->i - 1) * 84);
 		data->i = data->i - 1;
 		data->steps++;
 		ft_printf("steps count:%d\n", data->steps);
@@ -59,10 +55,6 @@ void	key_pressed_s(t_data *data)
 			mlx_close_window(data->mlx);
 			return ;
 		}
-		mlx_delete_image(data->mlx, data->pimg);
-		data->pimg = mlx_texture_to_image(data->mlx, data->player);
-		mlx_image_to_window(data->mlx, data->pimg, (data->j) * 60, \
-		(data->i + 1) * 84);
 		data->i = data->i + 1;
 		data->steps++;
 		ft_printf("steps count:%d\n", data->steps);
@@ -74,7 +66,6 @@ void	key_pressed_a(t_data *data)
 {
 	if (data->map[data->i][data->j - 1] != '1')
 	{
-		data->j = data->j - 1;
 		if (data->map[data->i][data->j] == 'C')
 		{
 			data->map[data->i][data->j] = '0';
@@ -89,10 +80,7 @@ void	key_pressed_a(t_data *data)
 			mlx_close_window(data->mlx);
 			return ;
 		}
-		mlx_delete_image(data->mlx, data->pimg);
-		data->pimg = mlx_texture_to_image(data->mlx, data->player);
-		mlx_image_to_window(data->mlx, data->pimg, data->j * 60, \
-		data->i * 84);
+		data->j = data->j - 1;
 		data->steps++;
 		ft_printf("steps count:%d\n", data->steps);
 		print_screen(data);
@@ -117,10 +105,6 @@ void	key_pressed_d(t_data *data)
 			mlx_close_window(data->mlx);
 			return ;
 		}
-		mlx_delete_image(data->mlx, data->pimg);
-		data->pimg = mlx_texture_to_image(data->mlx, data->player);
-		mlx_image_to_window(data->mlx, data->pimg, (data->j + 1) * 60, \
-			data->i * 84);
 		data->j = data->j + 1;
 		data->steps++;
 		ft_printf("steps count:%d\n", data->steps);
