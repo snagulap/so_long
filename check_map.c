@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:38:38 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/26 12:03:15 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:46:07 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ int	check_map(t_data *data, int i, int j)
 	while (data->map[i] && data->map[i][j])
 	{
 		if (data->map[i][j] != '1')
-		{
-			ft_printf("check map top borders\n");
 			return (0);
-		}
 		j++;
 	}
 	while (data->map[i])
@@ -30,10 +27,7 @@ int	check_map(t_data *data, int i, int j)
 	while (data->map[i] && data->map[i][j])
 	{
 		if (data->map[i][j] != '1')
-		{
-			ft_printf("check map bottom borders\n");
 			return (0);
-		}
 		j++;
 	}
 	return (1);
@@ -41,6 +35,7 @@ int	check_map(t_data *data, int i, int j)
 
 int	check_map1(t_data *data, int i, int j)
 {
+	i = 0;
 	while (data->map[i])
 	{
 		if (data->map[i][0] != '1')
@@ -55,6 +50,20 @@ int	check_map1(t_data *data, int i, int j)
 	{
 		if (data->map[i][j] != '1')
 			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	rect_check(t_data *data)
+{
+	int	i;
+
+	i = 1;
+	while (data->map[i])
+	{
+		if (ft_strlen(data->map[i - 1]) != ft_strlen(data->map[i]))
+			return (ft_free(data->map), 0);
 		i++;
 	}
 	return (1);

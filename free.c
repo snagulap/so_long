@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 11:27:38 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/24 03:45:16 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:08:23 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	free_img(t_data *data)
 		mlx_delete_image(data->mlx, data->colimg);
 	mlx_delete_texture(data->xit);
 	mlx_delete_image(data->mlx, data->exitimg);
-	free(data->name);
 	ft_free(data->map);
 	ft_free(data->map1);
 	mlx_terminate(data->mlx);

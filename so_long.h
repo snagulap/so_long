@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/07 14:57:18 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/26 11:53:52 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:22:03 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void		free_img(t_data *data);
 void		free_images_textures(t_data *data);
 void		ft_free(char **data);
 void		player_render(void *param);
+int			rect_check(t_data *data);
 #endif

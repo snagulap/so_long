@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:06:05 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/26 11:55:09 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 20:47:20 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ int	check(t_data *data)
 		&& check_count(data, 'E') == 1
 		&& check_count(data, 'P') == 1
 		&& check_count(data, 'C') != 0
-		&& valid_path(data))
+		&& valid_path(data)
+		&& rect_check(data))
 		return (0);
+	ft_printf("Error\nmap invalid\n");
 	return (1);
 }
 
@@ -49,7 +51,7 @@ int	start(char *data)
 	d = malloc(sizeof(t_data));
 	if (d == NULL)
 		return (0);
-	d->name = ft_strjoin("./maps/", data);
+	d->name = data;
 	creat_map(d);
 	d->width = width(d->name);
 	d->height = height(d->name);
@@ -57,10 +59,7 @@ int	start(char *data)
 	d->collectibles = 0;
 	d->col_count = col_count(d);
 	if (check(d))
-	{
-		ft_printf("Error\nmap invalid\n");
 		return (0);
-	}
 	d->mlx = mlx_init((d->width -1) * 60, (d->height) * 84, "game", false);
 	map_construct(d);
 	mlx_key_hook(d->mlx, &ft_hook, d);
@@ -73,14 +72,19 @@ int	start(char *data)
 
 int	main( int argc, char **argv)
 {
+	int	i;
+
 	if (argc != 2)
 	{
 		write(1, "Please give valid .ber file", 27);
 		return (0);
 	}
-	else if (check_filename(argv[1]))
+	i = check_filename(argv[1]);
+	if (i == 1)
 	{
-		start(argv[1]);
+		printf("Error\nmap invalid\n");
+		return (0);
 	}
+	start(argv[1]);
 	return (0);
 }

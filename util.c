@@ -6,7 +6,7 @@
 /*   By: snagulap <snagulap@student.42heilbronn.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 16:13:19 by snagulap          #+#    #+#             */
-/*   Updated: 2023/05/26 11:52:09 by snagulap         ###   ########.fr       */
+/*   Updated: 2023/05/26 18:22:37 by snagulap         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,20 +77,29 @@ void	creat_map(t_data *data)
 int	check_filename(char *name)
 {
 	int	len;
+	int	fd1;
 
-	len = ft_strlen(name);
-	if (ft_strncmp(name, ".ber", 4) == 0 && ft_strncmp(name, ".", 1) == 0)
+	fd1 = open(name, O_RDONLY);
+	if (fd1 < 0)
 	{
-		printf("Error\nPlease enter .ber map\n");
-		return (0);
-	}
-	if (name[len - 1] == 'r'
-		&& name[len -2] == 'e'
-		&& name[len -3] == 'b'
-		&& name[len - 4] == '.')
+		close(fd1);
 		return (1);
-	printf("Error\nPlease enter .ber map\n");
-	return (0);
+	}
+	close(fd1);
+	len = ft_strlen(name);
+	while (len >= 0)
+	{
+		if (name[len] == '.')
+		{
+			if (name[len + 1] == 'b' && name[len + 2] == 'e'
+				&& name[len + 3] == 'r')
+				return (0);
+			else
+				return (1);
+		}
+		len--;
+	}
+	return (1);
 }
 
 int	col_count(t_data *data)
