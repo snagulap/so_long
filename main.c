@@ -38,7 +38,7 @@ int	check(t_data *data)
 		&& check_count(data, 'C') != 0
 		&& valid_path(data)
 		&& rect_check(data))
-		return (0);
+		return (ft_free(data->map), ft_free(data->map1), 0);
 	ft_printf("Error\nmap invalid\n");
 	return (1);
 }
