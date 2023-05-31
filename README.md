@@ -9,14 +9,22 @@ so_long
 🪄 Everything small is just a smaller version of something big
 
 Index
+
 What is so_long?
+
 Requirements
+
 How does it work?
+
 Maps
+
 Controls
+
 How do I test it?
 42 Cursus
+
 Author
+
 What is so_long?
 The fifth project at 42 programming school. It's the first graphical project in the Cursus , we can choose between 3 options - FdF, Fractol and so_long - that in general cover different areas, but all 3 are graphical projects. The so_long consists of a top-down game, which we code from scratch using the MiniLibx graphical library. It involves a series of validations from the map that is passed as argument, checks to prevent memoy leaks, the game engineering, managing windows, events, sprites and maps.
 
